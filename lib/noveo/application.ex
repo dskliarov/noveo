@@ -4,8 +4,11 @@ defmodule Noveo.Application do
   @moduledoc false
 
   use Application
+  alias Noveo.Lookup
 
   def start(_type, _args) do
+    Lookup.preload()
+
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository

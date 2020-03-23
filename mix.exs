@@ -42,7 +42,9 @@ defmodule Noveo.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:geocoder, "~> 1.0"},
-      {:csv, "~> 2.3"}
+      {:csv, "~> 2.3"},
+      {:flow, "~> 1.0"},
+      {:scribe, "~> 0.10.0"}
     ]
   end
 

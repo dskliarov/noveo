@@ -18,6 +18,13 @@ config :noveo, NoveoWeb.Endpoint,
   pubsub: [name: Noveo.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [signing_salt: "ryN9cpwn"]
 
+config :noveo, Noveo.Lookup,
+  country_info_file: "../../priv/data/country_by_continent.csv",
+  professions_file: "../../priv/data/technical-test-professions.csv"
+
+config :noveo, Noveo.ContinentsGrouping,
+  jobs_file: "../../priv/data/technical-test-jobs.csv"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

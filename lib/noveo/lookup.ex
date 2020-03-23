@@ -3,6 +3,8 @@ defmodule Noveo.Lookup do
 
   @country :country_info
   @profession :profession
+  @country_file Application.get_env(:noveo, __MODULE__)[:country_info_file]
+  @professions_file Application.get_env(:noveo, __MODULE__)[:professions_file]
 
   def get_continent(country_code) do
     @country
@@ -14,19 +16,22 @@ defmodule Noveo.Lookup do
     |> get_value(profession_id)
   end
 
-  def preload_lookup() do
+  def preload() do
     preload_country_info()
     preload_professions()
   end
 
   defp get_value(prefix, id) do
-    {prefix, String.upcase(id)}
-    |> :persistent_term.get("Other")
+    {
+      :ok,
+     {prefix, String.upcase(id)}
+     |> :persistent_term.get("Other")
+    }
   end
 
   defp preload_country_info() do
     %{
-      path: "../../priv/data/country_by_continent.csv",
+      path: @country_file,
       key_field: "alpha-2",
       value_field: "region",
       prefix: @country
@@ -36,7 +41,7 @@ defmodule Noveo.Lookup do
 
   defp preload_professions() do
     %{
-      path: "../../priv/data/technical-test-professions.csv",
+      path: @professions_file,
       key_field: "id",
       value_field: "category_name",
       prefix: @profession
