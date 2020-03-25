@@ -44,7 +44,11 @@ defmodule Noveo.MixProject do
       {:geocoder, "~> 1.0"},
       {:csv, "~> 2.3"},
       {:flow, "~> 1.0"},
-      {:scribe, "~> 0.10.0"}
+      {:scribe, "~> 0.10.0"},
+      {:geo_postgis, "~> 3.3"},
+      {:geo, "~> 3.3"},
+      {:ex_json_schema, "~> 0.7.3"},
+      {:scrivener, "~> 2.7"}
     ]
   end
 

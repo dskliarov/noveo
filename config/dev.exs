@@ -7,6 +7,7 @@ config :noveo, Noveo.Repo,
   database: "noveo_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
+  types: Noveo.PostgresTypes,
   pool_size: 10
 
 # For development, we disable any cache and enable

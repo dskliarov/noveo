@@ -4,13 +4,16 @@ defmodule Noveo.Geo do
   alias Geocoder.Location
   alias Noveo.Lookup
 
-  def tst() do
-    geo_to_continent({48.1392154, 11.5781413})
-  end
-
   def geo_to_continent(geo) do
     with {:ok, country_code} <- geo_to_country_code(geo),
          {:ok, continent} <- Lookup.get_continent(country_code) do
+      {:ok, continent}
+    end
+  end
+
+  def geo_to_subregion(geo) do
+    with {:ok, country_code} <- geo_to_country_code(geo),
+         {:ok, continent} <- Lookup.get_subregion(country_code) do
       {:ok, continent}
     end
   end

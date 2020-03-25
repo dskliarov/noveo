@@ -7,5 +7,15 @@ defmodule NoveoWeb.Router do
 
   scope "/api", NoveoWeb do
     pipe_through :api
+
+    get(
+      "/jobs",
+      APIController,
+      :handle_get,
+      assigns: %{
+        view: :job_posting
+      }
+    )
+
   end
 end

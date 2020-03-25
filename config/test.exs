@@ -6,6 +6,7 @@ config :noveo, Noveo.Repo,
   password: "postgres",
   database: "noveo_test",
   hostname: "localhost",
+  types: Noveo.PostgresTypes,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

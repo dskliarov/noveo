@@ -2,12 +2,18 @@ defmodule Noveo.Lookup do
   alias Noveo.Utility
 
   @country :country_info
+  @subregion :sub_region
   @profession :profession
   @country_file Application.get_env(:noveo, __MODULE__)[:country_info_file]
   @professions_file Application.get_env(:noveo, __MODULE__)[:professions_file]
 
   def get_continent(country_code) do
     @country
+    |> get_value(country_code)
+  end
+
+  def get_subregion(country_code) do
+    @subregion
     |> get_value(country_code)
   end
 
@@ -18,9 +24,11 @@ defmodule Noveo.Lookup do
 
   def preload() do
     preload_country_info()
+    preload_subregion_info()
     preload_professions()
   end
 
+  defp get_value(_prefix, nil), do: {:ok, ""}
   defp get_value(prefix, id) do
     {
       :ok,
@@ -35,6 +43,16 @@ defmodule Noveo.Lookup do
       key_field: "alpha-2",
       value_field: "region",
       prefix: @country
+    }
+    |> preload_lookup()
+  end
+
+  defp preload_subregion_info() do
+    %{
+      path: @country_file,
+      key_field: "alpha-2",
+      value_field: "sub-region",
+      prefix: @subregion
     }
     |> preload_lookup()
   end

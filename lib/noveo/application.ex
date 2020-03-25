@@ -31,4 +31,5 @@ defmodule Noveo.Application do
     NoveoWeb.Endpoint.config_change(changed, removed)
     :ok
   end
+
 end
